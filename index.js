@@ -35,13 +35,13 @@ function Header(props) {
 
       <div className="search-bar w-96 h-9 relative">
         <span className="absolute top-[7.5px] left-[7px] z-50">
-          <i className="fas fa-search text-[#828282]"></i>
+          <i className="fas fa-search text-gray"></i>
         </span>
         <input
           type="search"
           name="search-form"
           id="search-form"
-          className="search-input absolute top-0 bottom-0 w-full pl-7 outline-none text-[18px] border-solid border-[1px] border-[#828282] rounded-md"
+          className="search-input absolute top-0 bottom-0 w-full pl-7 outline-none text-[18px] border-solid border-[1px] border-gray rounded-md"
           placeholder="Search..."
           value={props.q}
           // onChange={ (e) => setQ(e.target.value) }
@@ -54,7 +54,7 @@ function Header(props) {
         <button
           type="button"
           id="orderBtn"
-          className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70"
+          className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-light-primary/70"
           onClick={() => setIsHidden(isHidden ? false : true)}
         >
           {props.order == "post" ? (
@@ -65,7 +65,7 @@ function Header(props) {
         </button>
         <div
           id="order"
-          className={`absolute top-[45px] right-0 w-[160px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 z-50 ${
+          className={`absolute top-[45px] right-0 w-[160px] border-[1px] border-[#000533] rounded-md bg-light-primary/70 z-50 ${
             isHidden ? "hidden" : "block"
           }`}
         >
@@ -100,31 +100,31 @@ function Header(props) {
 const post = (value, index) => {
   return (
     <div
-      className="post border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-[#080033] wow animate__animated animate__fadeIn"
+      className="post border-[1px] border-[#000533] rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-[#080033] wow animate__animated animate__fadeIn"
       key={value.id}
     >
       <h1 className="coin-name text-[24px] text-white mb-[8px] font-semibold">
         {value.name}
       </h1>
-      <div className="coin-volume text-[16px] text-[#DBDBDB]">
+      <div className="coin-volume text-[16px] text-light">
         Volume:{" "}
-        <span className="text-[15px] text-[#C4C4C4]">
+        <span className="text-[15px] text-light-gray">
           {Number.parseFloat(value.volumeUsd24Hr).toFixed(3)}
         </span>
       </div>
-      <div className="coin-symbol text-[16px] text-[#DBDBDB]">
+      <div className="coin-symbol text-[16px] text-light">
         Symbol:{" "}
-        <span className="text-[15px] text-[#C4C4C4]">{value.symbol}</span>
+        <span className="text-[15px] text-light-gray">{value.symbol}</span>
       </div>
-      <div className="coin-price text-[16px] text-[#DBDBDB]">
+      <div className="coin-price text-[16px] text-light">
         Price:{" "}
-        <span className="text-[15px] text-[#C4C4C4]">
+        <span className="text-[15px] text-light-gray">
           {Number.parseFloat(value.priceUsd).toFixed(3)} $
         </span>
       </div>
-      <div className="coin-supply text-[16px] text-[#DBDBDB]">
+      <div className="coin-supply text-[16px] text-light">
         Supply:{" "}
-        <span className="text-[15px] text-[#C4C4C4]">
+        <span className="text-[15px] text-light-gray">
           {Number.parseFloat(value.supply).toFixed(2)}{" "}
           {value.maxSupply != null &&
             `max: ${Number.parseFloat(value.maxSupply).toFixed(2)}`}
@@ -133,11 +133,11 @@ const post = (value, index) => {
       <a
         href={value.explorer}
         target="_blank"
-        className="block bg- text-center text-[16px] mt-[15px] border-[1px] border-solid border-[#C4C4C4] rounded-sm py-[2px] transition transition-[1s] text-[#C4C4C4] hover:text-[#040D5A] hover:bg-[#C4C4C4]"
+        className="block bg- text-center text-[16px] mt-[15px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
       >
         View
       </a>
-      <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[5px] right-[10px] text-[#278F04] font-semibold border-[1px] border-solid border-[#278F04] rounded-full">
+      <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[5px] right-[10px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full">
         {value.rank}
       </span>
     </div>
@@ -150,30 +150,30 @@ const postRow = (value, index) => {
       <a
         href={value.explorer}
         target="_blank"
-        className="w-full flex flex-row items-center justify-start border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 my-[10px] px-[25px] py-[20px] relative shadow-lg shadow-[#080033] wow animate__animated animate__fadeIn"
+        className="w-full flex flex-row items-center justify-start border-[1px] border-[#000533] rounded-md bg-light-primary/70 my-[10px] px-[25px] py-[20px] relative shadow-lg shadow-[#080033] wow animate__animated animate__fadeIn"
       >
         <h1 className="coin-name text-[22px] text-white mr-[25px] font-semibold">
           {value.name}
         </h1>
-        <div className="coin-symbol text-[#DBDBDB] text-[16px] mr-[12px]">
+        <div className="coin-symbol text-light text-[16px] mr-[12px]">
           Symbol:{" "}
-          <span className="text-[#C4C4C4] text-[14px]">{value.symbol}</span>
+          <span className="text-light-gray text-[14px]">{value.symbol}</span>
         </div>
-        <div className="coin-price text-[#DBDBDB] text-[16px] mr-[12px]">
+        <div className="coin-price text-light text-[16px] mr-[12px]">
           Price:{" "}
-          <span className="text-[#C4C4C4] text-[14px]">
+          <span className="text-light-gray text-[14px]">
             ${Number.parseFloat(value.priceUsd).toFixed(3)}
           </span>
         </div>
-        <div className="coin-supply text-[#DBDBDB] text-[16px]">
+        <div className="coin-supply text-light text-[16px]">
           Supply:{" "}
-          <span className="text-[#C4C4C4] text-[14px]">
+          <span className="text-light-gray text-[14px]">
             {Number.parseFloat(value.supply).toFixed(2)}{" "}
             {value.maxSupply != null &&
               `max: ${Number.parseFloat(value.maxSupply).toFixed(2)}`}
           </span>
         </div>
-        <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[22px] right-[15px] text-[#278F04] font-semibold border-[1px] border-solid border-[#278F04] rounded-full">
+        <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[22px] right-[15px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full">
           {value.rank}
         </span>
       </a>
