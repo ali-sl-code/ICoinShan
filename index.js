@@ -30,7 +30,7 @@ function Header(props) {
   const [isHidden, setIsHidden] = React.useState(true)
 
   return (
-    <header className="flex flex-row flex-wrap items-center justify-between bg-blue shadow-lg shadow-dark-blue h-20 px-8">
+    <header className="flex md:flex-row flex-nowrap items-center md:justify-between justify-around flex-col bg-blue shadow-lg shadow-dark-blue md:h-20 h-48 px-8">
       <Logo href="/index.htm" src="./images/logo.png" />
 
       <div className="search-bar w-96 h-9 relative">
@@ -54,7 +54,7 @@ function Header(props) {
         <button
           type="button"
           id="orderBtn"
-          className="w-[40px] h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
+          className="md:w-[40px] w-96 h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
           onClick={() => setIsHidden(isHidden ? false : true)}
         >
           {props.order == "post" ? (
@@ -212,7 +212,7 @@ function Main(props) {
   } else if (!isLoaded || props.data["data"] == undefined) {
     return <div>Loading...</div>
   } else {
-    let mainTagClassList = ["coins", "py-[40px]", "px-[80px]", "flex"]
+    let mainTagClassList = ["coins", "sm:py-[40px]", "sm:px-[80px]", "flex", "px-[30px]", "py-[20px]"]
 
     if (props.order == "post") {
       mainTagClassList.push(
