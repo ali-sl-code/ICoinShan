@@ -30,7 +30,7 @@ function Header(props) {
   const [isHidden, setIsHidden] = React.useState(true)
 
   return (
-    <header className="flex flex-row flex-wrap items-center justify-between bg-[#02058F] shadow-lg shadow-[#080033] h-20 px-8">
+    <header className="flex flex-row flex-wrap items-center justify-between bg-blue shadow-lg shadow-dark-blue h-20 px-8">
       <Logo href="/index.htm" src="./images/logo.png" />
 
       <div className="search-bar w-96 h-9 relative">
@@ -54,7 +54,7 @@ function Header(props) {
         <button
           type="button"
           id="orderBtn"
-          className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-light-primary/70"
+          className="w-[40px] h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
           onClick={() => setIsHidden(isHidden ? false : true)}
         >
           {props.order == "post" ? (
@@ -65,12 +65,12 @@ function Header(props) {
         </button>
         <div
           id="order"
-          className={`absolute top-[45px] right-0 w-[160px] border-[1px] border-[#000533] rounded-md bg-light-primary/70 z-50 ${
+          className={`absolute top-[45px] right-0 w-[160px] border-[1px] border-dark-blue rounded-md bg-light-primary/70 z-50 ${
             isHidden ? "hidden" : "block"
           }`}
         >
           <div
-            className="post flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer"
+            className="post flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-dark-blue cursor-pointer"
             onClick={(e) => {
               setIsHidden(true)
               props.setOrder("post")
@@ -80,7 +80,7 @@ function Header(props) {
             <span className="order-option ml-[10px]">Post</span>
           </div>
           <div
-            className="row flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer"
+            className="row flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-dark-blue cursor-pointer"
             onClick={(e) => {
               setIsHidden(true)
               props.setOrder("row")
@@ -100,7 +100,7 @@ function Header(props) {
 const post = (value, index) => {
   return (
     <div
-      className="post border-[1px] border-[#000533] rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-[#080033] wow animate__animated animate__fadeIn"
+      className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue wow animate__animated animate__fadeIn"
       key={value.id}
     >
       <h1 className="coin-name text-[24px] text-white mb-[8px] font-semibold">
@@ -150,7 +150,7 @@ const postRow = (value, index) => {
       <a
         href={value.explorer}
         target="_blank"
-        className="w-full flex flex-row items-center justify-start border-[1px] border-[#000533] rounded-md bg-light-primary/70 my-[10px] px-[25px] py-[20px] relative shadow-lg shadow-[#080033] wow animate__animated animate__fadeIn"
+        className="w-full flex flex-row items-center justify-start border-[1px] border-dark-blue rounded-md bg-light-primary/70 my-[10px] px-[25px] py-[20px] relative shadow-lg shadow-dark-blue wow animate__animated animate__fadeIn"
       >
         <h1 className="coin-name text-[22px] text-white mr-[25px] font-semibold">
           {value.name}

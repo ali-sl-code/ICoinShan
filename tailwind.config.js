@@ -9,6 +9,8 @@ module.exports = {
       "primary": "#080034",
       "light-primary": "#040d5a",
       "rank": "#278f04",
+      "blue": "#02058F",
+      "dark-blue": "#080033",
     },
     extend: {},
   },
