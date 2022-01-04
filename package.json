@@ -1,0 +1,19 @@
+{
+  "name": "icoinshan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tailwindcss": "npx tailwindcss -o build.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ali-sl-code/ICoinShan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ali-sl-code/ICoinShan/issues"
+  },
+  "homepage": "https://github.com/ali-sl-code/ICoinShan#readme"
+}
