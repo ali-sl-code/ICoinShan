@@ -29,46 +29,68 @@ function Header(props) {
     const [isHidden, setIsHidden] = React.useState(true)
 
     return (
-        <header className="flex flex-row flex-wrap items-center justify-between bg-[#02058F] shadow-lg shadow-[#080033] h-20 px-8">
+      <header className="flex flex-row flex-wrap items-center justify-between bg-[#02058F] shadow-lg shadow-[#080033] h-20 px-8">
+        <Logo href="/index.htm" src="./images/logo.png" />
 
-            <Logo href="/index.htm" src="./images/logo.png" />
+        <div className="search-bar w-96 h-9 relative">
+          <span className="absolute top-[7.5px] left-[7px] z-50">
+            <i className="fas fa-search text-[#828282]"></i>
+          </span>
+          <input
+            type="search"
+            name="search-form"
+            id="search-form"
+            className="search-input absolute top-0 bottom-0 w-full pl-7 outline-none text-[18px] border-solid border-[1px] border-[#828282] rounded-md"
+            placeholder="Search..."
+            value={props.q}
+            // onChange={ (e) => setQ(e.target.value) }
+            onChange={(e) => props.setQ(e.target.value)}
+          />
+        </div>
 
-            <div className="search-bar w-96 h-9 relative">
-                    <span className="absolute top-[7.5px] left-[7px] z-50"><i className="fas fa-search text-[#828282]"></i></span>
-                    <input
-                        type="search"
-                        name="search-form"
-                        id="search-form"
-                        className="search-input absolute top-0 bottom-0 w-full pl-7 outline-none text-[18px] border-solid border-[1px] border-[#828282] rounded-md"
-                        placeholder="Search..."
-                        value={ props.q }
-                        // onChange={ (e) => setQ(e.target.value) }
-                        onChange={ (e) => props.setQ(e.target.value) }
-                    />
+        <div className="order relative">
+          {/* <button type="button">{ props.order == "row" ? <i className="fas fa-grip-horizontal"></i> : <i className="fas fa-th-list"></i> }</button> */}
+          <button
+            type="button"
+            id="orderBtn"
+            className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70"
+            onClick={() => setIsHidden(isHidden ? false : true)}
+          >
+            {props.order == "post" ? (
+              <i className="fas fa-grip-horizontal text-white text-[22px]"></i>
+            ) : (
+              <i className="fas fa-th-list text-white text-[22px]"></i>
+            )}
+          </button>
+          <div
+            id="order"
+            className={`absolute top-[45px] right-0 w-[160px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 z-50 ${
+              isHidden ? "hidden" : "block"
+            }`}
+          >
+            <div
+              className="post flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer"
+              onClick={(e) => {
+                setIsHidden(true)
+                props.setOrder("post")
+              }}
+            >
+              <i className="fas fa-grip-horizontal"></i>
+              <span className="order-option ml-[10px]">Post</span>
             </div>
-
-            <div className="order relative">
-                {/* <button type="button">{ props.order == "row" ? <i className="fas fa-grip-horizontal"></i> : <i className="fas fa-th-list"></i> }</button> */}
-                <button type="button" id="orderBtn" className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70" onClick={ () => setIsHidden(isHidden ? false : true) }>
-                    {
-                        props.order == "post" ?
-                        <i className="fas fa-grip-horizontal text-white text-[22px]"></i> :
-                        <i className="fas fa-th-list text-white text-[22px]"></i>
-                    }
-                </button>
-                <div id="order" className={ `absolute top-[45px] right-0 w-[160px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 z-50 ${ isHidden ? 'hidden' : 'block' }` }>
-                    <div className="post flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer" onClick={ (e) => {
-                        setIsHidden(true)
-                        props.setOrder('post')
-                    } }><i className="fas fa-grip-horizontal"></i><span className="order-option ml-[10px]">Post</span></div>
-                    <div className="row flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer" onClick={ (e) => {
-                        setIsHidden(true)
-                        props.setOrder('row')
-                    } }><i className="fas fa-th-list"></i><span className="order-option ml-[10px]">Row</span></div>
-                </div>
+            <div
+              className="row flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer"
+              onClick={(e) => {
+                setIsHidden(true)
+                props.setOrder("row")
+              }}
+            >
+              <i className="fas fa-th-list"></i>
+              <span className="order-option ml-[10px]">Row</span>
             </div>
-
-        </header>
+          </div>
+        </div>
+      </header>
     )
 }
 //* Header JSX code end
