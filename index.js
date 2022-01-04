@@ -54,7 +54,7 @@ function Header(props) {
         <button
           type="button"
           id="orderBtn"
-          className="md:w-[40px] w-96 h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
+          className="md:w-[40px] md:block hidden h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
           onClick={() => setIsHidden(isHidden ? false : true)}
         >
           {props.order == "post" ? (
@@ -65,7 +65,7 @@ function Header(props) {
         </button>
         <div
           id="order"
-          className={`absolute top-[45px] right-0 w-[160px] border-[1px] border-dark-blue rounded-md bg-light-primary/70 z-50 ${
+          className={`absolute top-[45px] right-0 md:w-[160px] w-96 border-[1px] border-dark-blue rounded-md bg-light-primary/70 z-50 ${
             isHidden ? "hidden" : "block"
           }`}
         >
