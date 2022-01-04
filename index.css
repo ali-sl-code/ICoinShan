@@ -1,0 +1,8 @@
+/** Add fonts */
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+footer p {
+    font-family: 'The Nautigal', cursive;
+}
