@@ -1,10 +1,3 @@
-//! Events start
-function showOrder() {
-    const order = document.getElementById("order")
-    order.classList.toggle("hidden")
-}
-//! Events end
-
 //! Components start
 //* Search component start
 function search(items, searchParam, q) {
@@ -33,6 +26,8 @@ function Logo(props) {
 
 //* Header JSX code start
 function Header(props) {
+    const [isHidden, setIsHidden] = React.useState(true)
+
     return (
         <header className="flex flex-row flex-wrap items-center justify-between bg-[#02058F] shadow-lg shadow-[#080033] h-20 px-8">
 
@@ -54,16 +49,20 @@ function Header(props) {
 
             <div className="order relative">
                 {/* <button type="button">{ props.order == "row" ? <i className="fas fa-grip-horizontal"></i> : <i className="fas fa-th-list"></i> }</button> */}
-                <button type="button" id="orderBtn" className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70" onClick={ () => showOrder() }><i className="fas fa-grip-horizontal text-white text-[22px]"></i></button>
-                <div id="order" className="absolute top-[45px] right-0 hidden w-[160px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 z-50">
+                <button type="button" id="orderBtn" className="w-[40px] h-[40px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70" onClick={ () => setIsHidden(isHidden ? false : true) }>
+                    {
+                        props.order == "post" ?
+                        <i className="fas fa-grip-horizontal text-white text-[22px]"></i> :
+                        <i className="fas fa-th-list text-white text-[22px]"></i>
+                    }
+                </button>
+                <div id="order" className={ `absolute top-[45px] right-0 w-[160px] border-[1px] border-[#000533] rounded-md bg-[#040D5A]/70 z-50 ${ isHidden ? 'hidden' : 'block' }` }>
                     <div className="post flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer" onClick={ (e) => {
-                        e.target.parentNode.classList.add("hidden")
-                        document.getElementById("orderBtn").innerHTML = `<i class="fas fa-grip-horizontal text-white text-[22px]"></i>`
+                        setIsHidden(true)
                         props.setOrder('post')
                     } }><i className="fas fa-grip-horizontal"></i><span className="order-option ml-[10px]">Post</span></div>
                     <div className="row flex flex-row items-center px-[10px] w-full text-white h-[40px] transition transition-[0.5s] hover:bg-[#000533] cursor-pointer" onClick={ (e) => {
-                        e.target.parentNode.classList.add("hidden")
-                        document.getElementById("orderBtn").innerHTML = `<i class="fas fa-th-list text-white text-[22px]"></i>`
+                        setIsHidden(true)
                         props.setOrder('row')
                     } }><i className="fas fa-th-list"></i><span className="order-option ml-[10px]">Row</span></div>
                 </div>
@@ -198,7 +197,7 @@ function App(props) {
 
     return (
         <>
-            <Header setQ={ setQ } q={ q } setOrder={ setOrder } />
+            <Header setQ={ setQ } q={ q } order={ order } setOrder={ setOrder } />
             <Main data={ data } setData={ setData } post={ post } postRow={ postRow } q={ q } search={ search } searchParam={ searchParam } order={ order } />
             <Footer owner="Ali Soleimani" />
         </>
