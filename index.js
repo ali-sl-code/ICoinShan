@@ -103,9 +103,23 @@ const post = (value, index) => {
       className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow wow animate__animated animate__fadeIn"
       key={value.id}
     >
-      <h1 className="coin-name text-[24px] text-white mb-[8px] font-semibold">
-        {value.name}
-      </h1>
+      <div className="flex - flex-row items-center justify-start mb-[10px]">
+        <img
+          src={`https://cryptologos.cc/logos/${
+            value.id
+          }-${
+            value.symbol.toLowerCase()
+          }-logo.svg`}
+          className="w-[40px] h-[40px] mr-2"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src="./images/404.png";
+          }}
+        />
+        <h1 className="coin-name text-[24px] text-white font-semibold">
+          {value.name}
+        </h1>
+      </div>
       <div className="coin-volume text-[16px] text-light">
         Volume:{" "}
         <span className="text-[15px] text-light-gray">
@@ -119,7 +133,7 @@ const post = (value, index) => {
       <div className="coin-price text-[16px] text-light">
         Price:{" "}
         <span className="text-[15px] text-light-gray">
-          {Number.parseFloat(value.priceUsd).toFixed(3)} $
+          {Number.parseFloat(value.priceUsd).toFixed(5)} $
         </span>
       </div>
       <div className="coin-supply text-[16px] text-light">
@@ -143,7 +157,11 @@ const post = (value, index) => {
         className="flex flex-row items-center justify-center text-center text-[16px] mt-[10px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
       >
         <span>View on</span>
-        <img src="./images/coinex.svg" alt="CoinEx" className="w-[20px] h-[20px] ml-1" />
+        <img
+          src="./images/coinex.svg"
+          alt="CoinEx"
+          className="w-[20px] h-[20px] ml-1"
+        />
       </a>
       <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[5px] right-[10px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full">
         {value.rank}
@@ -220,7 +238,14 @@ function Main(props) {
   } else if (!isLoaded || props.data["data"] == undefined) {
     return <div>Loading...</div>
   } else {
-    let mainTagClassList = ["coins", "sm:py-[40px]", "sm:px-[80px]", "flex", "px-[30px]", "py-[20px]"]
+    let mainTagClassList = [
+      "coins",
+      "sm:py-[40px]",
+      "sm:px-[80px]",
+      "flex",
+      "px-[30px]",
+      "py-[20px]",
+    ]
 
     if (props.order == "post") {
       mainTagClassList.push(
