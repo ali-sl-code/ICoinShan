@@ -133,9 +133,17 @@ const post = (value, index) => {
       <a
         href={value.explorer}
         target="_blank"
-        className="block bg- text-center text-[16px] mt-[15px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
+        className="block bg- text-center text-[16px] mt-[25px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
       >
         View
+      </a>
+      <a
+        href={`https://www.coinex.com/info/${value.symbol}`}
+        target="_blank"
+        className="flex flex-row items-start justify-center text-center text-[16px] mt-[10px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
+      >
+        <span>View on</span>
+        <img src="./images/coinex.svg" alt="CoinEx" className="w-[23px] h-[23px] ml-1" />
       </a>
       <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[5px] right-[10px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full">
         {value.rank}
