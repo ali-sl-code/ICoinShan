@@ -98,6 +98,26 @@ function Header(props) {
 
 //* Create new Post component code start
 const post = (value, index) => {
+  let changePercent24HrClassList = [
+    'absolute',
+    'items-center',
+    'justify-center',
+    'px-2',
+    'py-1',
+    'top-[5px]',
+    'right-[10px]',
+    'font-semibold',
+    'border-[1px]',
+    'border-solid',
+    'rounded-full',
+  ]
+
+  if (value.changePercent24Hr.charAt(0) == "-") {
+    changePercent24HrClassList.push('text-damage border-damage')
+  } else {
+    changePercent24HrClassList.push('text-profit border-profit')
+  }
+
   return (
     <div
       className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow wow animate__animated animate__fadeIn"
@@ -163,8 +183,8 @@ const post = (value, index) => {
           className="w-[20px] h-[20px] ml-1"
         />
       </a>
-      <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[5px] right-[10px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full">
-        {value.rank}
+      <span className={ changePercent24HrClassList.join(" ") }>
+        {Number.parseFloat(value.changePercent24Hr).toFixed(2)}
       </span>
     </div>
   )
