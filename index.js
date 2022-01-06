@@ -100,7 +100,7 @@ function Header(props) {
 const post = (value, index) => {
   return (
     <div
-      className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue wow animate__animated animate__fadeIn"
+      className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow wow animate__animated animate__fadeIn"
       key={value.id}
     >
       <h1 className="coin-name text-[24px] text-white mb-[8px] font-semibold">
