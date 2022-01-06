@@ -99,23 +99,23 @@ function Header(props) {
 //* Create new Post component code start
 const post = (value, index) => {
   let changePercent24HrClassList = [
-    'absolute',
-    'items-center',
-    'justify-center',
-    'px-2',
-    'py-1',
-    'top-[5px]',
-    'right-[10px]',
-    'font-semibold',
-    'border-[1px]',
-    'border-solid',
-    'rounded-full',
+    "absolute",
+    "items-center",
+    "justify-center",
+    "px-2",
+    "py-1",
+    "top-[5px]",
+    "right-[10px]",
+    "font-semibold",
+    "border-[1px]",
+    "border-solid",
+    "rounded-full",
   ]
 
   if (value.changePercent24Hr.charAt(0) == "-") {
-    changePercent24HrClassList.push('text-damage border-damage')
+    changePercent24HrClassList.push("text-damage border-damage")
   } else {
-    changePercent24HrClassList.push('text-profit border-profit')
+    changePercent24HrClassList.push("text-profit border-profit")
   }
 
   return (
@@ -127,13 +127,11 @@ const post = (value, index) => {
         <img
           src={`https://cryptologos.cc/logos/${
             value.id
-          }-${
-            value.symbol.toLowerCase()
-          }-logo.svg`}
+          }-${value.symbol.toLowerCase()}-logo.svg`}
           className="w-[40px] h-[40px] mr-2"
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src="./images/404.png";
+          onError={({currentTarget}) => {
+            currentTarget.onerror = null
+            currentTarget.src = "./images/404.png"
           }}
         />
         <h1 className="coin-name text-[24px] text-white font-semibold">
@@ -183,7 +181,7 @@ const post = (value, index) => {
           className="w-[20px] h-[20px] ml-1"
         />
       </a>
-      <span className={ changePercent24HrClassList.join(" ") }>
+      <span className={changePercent24HrClassList.join(" ")}>
         {Number.parseFloat(value.changePercent24Hr).toFixed(2)}
       </span>
     </div>
@@ -219,7 +217,7 @@ const postRow = (value, index) => {
               `max: ${Number.parseFloat(value.maxSupply).toFixed(2)}`}
           </span>
         </div>
-        <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[22px] right-[15px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full">
+        <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[22px] right-[15px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full text-profit border-profit">
           {value.rank}
         </span>
       </a>
