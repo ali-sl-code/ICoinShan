@@ -98,24 +98,28 @@ function Header(props) {
 
 //* Create new Post component code start
 const post = (value, index) => {
+  let isGrowing = true
   let changePercent24HrClassList = [
-    "absolute",
+    // "absolute",
     "items-center",
     "justify-center",
     "px-2",
     "py-1",
-    "top-[5px]",
-    "right-[10px]",
+    // "top-[5px]",
+    // "right-[10px]",
     "font-semibold",
-    "border-[1px]",
-    "border-solid",
-    "rounded-full",
+    // "border-[1px]",
+    // "border-solid",
+    // "rounded-full",
   ]
 
   if (value.changePercent24Hr.charAt(0) == "-") {
-    changePercent24HrClassList.push("text-damage border-damage")
+    changePercent24HrClassList.push("text-damage")
+    isGrowing = false
+    // changePercent24HrClassList.push("text-damage border-damage")
   } else {
-    changePercent24HrClassList.push("text-profit border-profit")
+    changePercent24HrClassList.push("text-profit")
+    // changePercent24HrClassList.push("text-profit border-profit")
   }
 
   return (
@@ -153,6 +157,14 @@ const post = (value, index) => {
         <span className="text-[15px] text-light-gray">
           {Number.parseFloat(value.priceUsd).toFixed(5)} $
         </span>
+        <span className={changePercent24HrClassList.join(" ")}>
+          {isGrowing ? (
+            <i class="fas fa-caret-up mx-1"></i>
+          ) : (
+            <i class="fas fa-caret-down mx-1"></i>
+          )}
+          {Number.parseFloat(value.changePercent24Hr).toFixed(2)}
+        </span>
       </div>
       <div className="coin-supply text-[16px] text-light">
         Supply:{" "}
@@ -181,9 +193,6 @@ const post = (value, index) => {
           className="w-[20px] h-[20px] ml-1"
         />
       </a>
-      <span className={changePercent24HrClassList.join(" ")}>
-        {Number.parseFloat(value.changePercent24Hr).toFixed(2)}
-      </span>
     </div>
   )
 }
