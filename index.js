@@ -96,8 +96,8 @@ function Header(props) {
 }
 //* Header JSX code end
 
-//* Create new Post component code start
-const post = (value, index) => {
+//* Post component info JSX code start
+function Info({value}) {
   let isGrowing = true
   let changePercent24HrClassList = [
     // "absolute",
@@ -122,38 +122,8 @@ const post = (value, index) => {
     // changePercent24HrClassList.push("text-profit border-profit")
   }
 
-  let coinLogoSrc = `https://cryptologos.cc/logos/${
-    value.id
-  }-${value.symbol.toLowerCase()}-logo.svg`
-
   return (
-    <div
-      className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow wow animate__animated animate__fadeIn"
-      key={value.id}
-    >
-      <div className="flex flex-row items-center justify-between mb-[10px]">
-        <div className="flex flex-row items-center justify-start">
-          <a href={coinLogoSrc} target="_blank">
-            <img
-              src={coinLogoSrc}
-              className="w-[40px] h-[40px] mr-2"
-              onError={({currentTarget}) => {
-                currentTarget.onerror = null
-                currentTarget.src = "./images/404.png"
-              }}
-            />
-          </a>
-          <h1 className="coin-name text-[24px] text-white font-semibold">
-            {value.name}
-          </h1>
-        </div>
-        <button
-          className=" text-[16px] py-[5px] px-[10px] flex items-center justify-center border-[1px] border-solid border-light-gray rounded-sm transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
-          data-symbol={value.symbol}
-        >
-          <i class="fas fa-chart-line"></i>
-        </button>
-      </div>
+    <>
       <div className="coin-volume text-[16px] text-light">
         Volume:{" "}
         <span className="text-[15px] text-light-gray">
@@ -205,6 +175,50 @@ const post = (value, index) => {
           className="w-[20px] h-[20px] ml-1"
         />
       </a>
+    </>
+  )
+}
+//* Post component info JSX code end
+
+//* Create new Post component code start
+// const post = (value, index) => {
+function Post({value, index}) {
+  const [chart, setChart] = React.useState(false)
+
+  let coinLogoSrc = `https://cryptologos.cc/logos/${
+    value.id
+  }-${value.symbol.toLowerCase()}-logo.svg`
+
+  return (
+    <div
+      className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow wow animate__animated animate__fadeIn"
+      key={value.id}
+    >
+      <div className="flex flex-row items-center justify-between mb-[15px]">
+        <div className="flex flex-row items-center justify-start">
+          <a href={coinLogoSrc} target="_blank">
+            <img
+              src={coinLogoSrc}
+              className="w-[40px] h-[40px] mr-2"
+              onError={({currentTarget}) => {
+                currentTarget.onerror = null
+                currentTarget.src = "./images/404.png"
+              }}
+            />
+          </a>
+          <h1 className="coin-name text-[24px] text-white font-semibold">
+            {value.name}
+          </h1>
+        </div>
+        <button
+          className=" text-[16px] py-[5px] px-[10px] flex items-center justify-center border-[1px] border-solid border-light-gray rounded-sm transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
+          data-symbol={value.symbol}
+          onClick={() => setChart(!chart)}
+        >
+          <i className="fas fa-chart-line"></i>
+        </button>
+      </div>
+      {chart ? <p>Show</p> : <Info value={value} />}
     </div>
   )
 }
@@ -306,7 +320,9 @@ function Main(props) {
         {props.order == "post" &&
           props
             .search(props.data["data"], props.searchParam, props.q)
-            .map((value, index) => props.post(value, index))}
+            .map((value, index) => (
+              <props.post value={value} index={index} key={value.id} />
+            ))}
         {props.order == "row" &&
           props
             .search(props.data["data"], props.searchParam, props.q)
@@ -343,7 +359,7 @@ function App(props) {
       <Main
         data={data}
         setData={setData}
-        post={post}
+        post={Post}
         postRow={postRow}
         q={q}
         search={search}
