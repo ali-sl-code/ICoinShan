@@ -131,20 +131,28 @@ const post = (value, index) => {
       className="post border-[1px] border-dark-blue rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] relative shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow wow animate__animated animate__fadeIn"
       key={value.id}
     >
-      <div className="flex flex-row items-center justify-start mb-[10px]">
-        <a href={ coinLogoSrc } target="_blank">
-          <img
-            src={ coinLogoSrc }
-            className="w-[40px] h-[40px] mr-2"
-            onError={({currentTarget}) => {
-              currentTarget.onerror = null
-              currentTarget.src = "./images/404.png"
-            }}
-          />
-        </a>
-        <h1 className="coin-name text-[24px] text-white font-semibold">
-          {value.name}
-        </h1>
+      <div className="flex flex-row items-center justify-between mb-[10px]">
+        <div className="flex flex-row items-center justify-start">
+          <a href={coinLogoSrc} target="_blank">
+            <img
+              src={coinLogoSrc}
+              className="w-[40px] h-[40px] mr-2"
+              onError={({currentTarget}) => {
+                currentTarget.onerror = null
+                currentTarget.src = "./images/404.png"
+              }}
+            />
+          </a>
+          <h1 className="coin-name text-[24px] text-white font-semibold">
+            {value.name}
+          </h1>
+        </div>
+        <button
+          className=" text-[16px] py-[5px] px-[10px] flex items-center justify-center border-[1px] border-solid border-light-gray rounded-sm transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
+          data-symbol={value.symbol}
+        >
+          <i class="fas fa-chart-line"></i>
+        </button>
       </div>
       <div className="coin-volume text-[16px] text-light">
         Volume:{" "}
@@ -181,7 +189,7 @@ const post = (value, index) => {
       <a
         href={value.explorer}
         target="_blank"
-        className="block bg- text-center text-[16px] mt-[25px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
+        className="block text-center text-[16px] mt-[25px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
       >
         View
       </a>
