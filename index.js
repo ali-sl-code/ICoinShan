@@ -163,11 +163,11 @@ const post = (value, index) => {
         </span>
         <span className={changePercent24HrClassList.join(" ")}>
           {isGrowing ? (
-            <i class="fas fa-caret-up mx-1"></i>
+            <i className="fas fa-caret-up mx-1"></i>
           ) : (
-            <i class="fas fa-caret-down mx-1"></i>
+            <i className="fas fa-caret-down mx-1"></i>
           )}
-          {Number.parseFloat(value.changePercent24Hr).toFixed(2)}
+          {Number.parseFloat(value.changePercent24Hr).toFixed(2)}%
         </span>
       </div>
       <div className="coin-supply text-[16px] text-light">
