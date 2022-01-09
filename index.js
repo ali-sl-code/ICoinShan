@@ -97,7 +97,7 @@ function Header(props) {
 //* Header JSX code end
 
 //* Post component info JSX code start
-function Info({value}) {
+function PostInfo({value}) {
   let isGrowing = true
   let changePercent24HrClassList = [
     // "absolute",
@@ -283,7 +283,7 @@ function Post({value, index}) {
           <i className="fas fa-chart-line"></i>
         </button>
       </div>
-      {chart ? <PostChart symbol={value.symbol} /> : <Info value={value} />}
+      {chart ? <PostChart symbol={value.symbol} /> : <PostInfo value={value} />}
     </div>
   )
 }
