@@ -480,7 +480,7 @@ function App(props) {
   const [data, setData] = React.useState({})
   const [q, setQ] = React.useState("")
   const [searchParam] = React.useState(["name", "symbol"])
-  const [order, setOrder] = React.useState("row")
+  const [order, setOrder] = React.useState("post")
 
   return (
     <>
