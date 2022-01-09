@@ -190,7 +190,7 @@ function PostChart(props) {
 
   React.useEffect(() => {
     fetch(
-      `https://min-api.cryptocompare.com/data/v2/histominute?fsym=${props.symbol}&tsym=USD&limit=19&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146`
+      `https://min-api.cryptocompare.com/data/v2/histominute?fsym=${props.symbol}&tsym=USD&limit=${props.limit}&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146`
     )
       .then((res) => res.json())
       .then(
@@ -285,7 +285,7 @@ function Post({value, index}) {
           <i className="fas fa-chart-line"></i>
         </button>
       </div>
-      {chart ? <PostChart symbol={value.symbol} /> : <PostInfo value={value} />}
+      {chart ? <PostChart symbol={value.symbol} limit="19" /> : <PostInfo value={value} />}
     </div>
   )
 }
@@ -363,7 +363,7 @@ function PostRow({value, index}) {
           </span>
         </div>
       </div>
-      {chart && <PostChart symbol={value.symbol} />}
+      {chart && <PostChart symbol={value.symbol} limit="99" />}
     </div>
   )
 }
