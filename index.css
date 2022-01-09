@@ -6,3 +6,8 @@
 footer p {
     font-family: 'The Nautigal', cursive;
 }
+
+/** Loading style code */
+.loading {
+    border-top-color: transparent;
+}

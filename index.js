@@ -210,7 +210,11 @@ function PostChart(props) {
     console.log("error", error)
     return <div>Error: {error.message}</div>
   } else if (!isLoaded) {
-    return <div>Loading...</div>
+    return (
+      <div className="w-full flex items-center justify-center my-5">
+        <div className="loading w-16 h-16 border-4 border-light border-solid rounded-full animate-spin"></div>
+      </div>
+    )
   } else {
     return (
       <Line
@@ -322,6 +326,18 @@ const postRow = (value, index) => {
 }
 //* Create new Post component code end
 
+//* Footer JSX code start
+function Footer(props) {
+  return (
+    <footer className="footer w-full pb-[30px]">
+      <p className=" text-white text-[26px] text-center">
+        {"Powered By ↝"} {props.owner} {"♥"}
+      </p>
+    </footer>
+  )
+}
+//* Footer JSX code end
+
 //* Posts JSX code start
 function Main(props) {
   const [error, setError] = React.useState(null)
@@ -350,7 +366,11 @@ function Main(props) {
   if (error) {
     return <div>Error: {error.message}</div>
   } else if (!isLoaded || props.data["data"] == undefined) {
-    return <div>Loading...</div>
+    return (
+      <div className="w-full flex items-center justify-center mt-10">
+        <div className="loading w-16 h-16 border-4 border-light border-solid rounded-full animate-spin"></div>
+      </div>
+    )
   } else {
     let mainTagClassList = [
       "coins",
@@ -377,34 +397,25 @@ function Main(props) {
       )
     }
     return (
-      <main className={mainTagClassList.join(" ")}>
-        {props.order == "post" &&
-          props
-            .search(props.data["data"], props.searchParam, props.q)
-            .map((value, index) => (
-              <props.post value={value} index={index} key={value.id} />
-            ))}
-        {props.order == "row" &&
-          props
-            .search(props.data["data"], props.searchParam, props.q)
-            .map((value, index) => props.postRow(value, index))}
-      </main>
+      <>
+        <main className={mainTagClassList.join(" ")}>
+          {props.order == "post" &&
+            props
+              .search(props.data["data"], props.searchParam, props.q)
+              .map((value, index) => (
+                <props.post value={value} index={index} key={value.id} />
+              ))}
+          {props.order == "row" &&
+            props
+              .search(props.data["data"], props.searchParam, props.q)
+              .map((value, index) => props.postRow(value, index))}
+        </main>
+        <Footer owner="Ali Soleimani" />
+      </>
     )
   }
 }
 //* Posts JSX code end
-
-//* Footer JSX code start
-function Footer(props) {
-  return (
-    <footer className="footer w-full pb-[30px]">
-      <p className=" text-white text-[26px] text-center">
-        {"Powered By ↝"} {props.owner} {"♥"}
-      </p>
-    </footer>
-  )
-}
-//* Footer JSX code end
 //! Components end
 
 //! App component
@@ -427,7 +438,6 @@ function App(props) {
         searchParam={searchParam}
         order={order}
       />
-      <Footer owner="Ali Soleimani" />
     </>
   )
 }
