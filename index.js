@@ -364,7 +364,19 @@ function Main(props) {
   }, [])
 
   if (error) {
-    return <div>Error: {error.message}</div>
+    return (
+      <main className="flex items-center justify-center">
+        <div className="post border-[1px] border-light-gray rounded-md bg-light-primary/70 py-[20px] px-[30px] mx-[15px] my-[20px] w-[423px] min-w-[300px] shadow-lg shadow-dark-blue hover:shadow-2xl transition-shadow animate__animated animate__fadeIn">
+          <div className="text-light text-center">Error: {error.message}</div>
+          <button
+            className="block w-full text-center text-[16px] mt-[25px] border-[1px] border-solid border-light-gray rounded-sm py-[2px] transition-[1s] text-light-gray hover:text-light-primary hover:bg-light-gray"
+            onClick={() => window.location.reload(false)}
+          >
+            Reload
+          </button>
+        </div>
+      </main>
+    )
   } else if (!isLoaded || props.data["data"] == undefined) {
     return (
       <div className="w-full flex items-center justify-center mt-10">
