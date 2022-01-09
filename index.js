@@ -180,6 +180,67 @@ function Info({value}) {
 }
 //* Post component info JSX code end
 
+//* Post component chart code start
+function PostChart(props) {
+  const [times, setTimes] = React.useState(undefined)
+  const [prices, setPrices] = React.useState(undefined)
+  const [error, setError] = React.useState(null)
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    fetch(
+      `https://min-api.cryptocompare.com/data/v2/histominute?fsym=${props.symbol}&tsym=USD&limit=19&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146`
+    )
+      .then((res) => res.json())
+      .then(
+        (res) => {
+          const data = res.Data.Data
+          setTimes(data.map((obj) => obj.time))
+          setPrices(data.map((obj) => obj.high))
+          setIsLoaded(true)
+        },
+        (error) => {
+          setIsLoaded(true)
+          setError(error)
+        }
+      )
+  }, [])
+
+  if (error) {
+    console.log("error", error)
+    return <div>Error: {error.message}</div>
+  } else if (!isLoaded) {
+    return <div>Loading...</div>
+  } else {
+    return (
+      <Line
+        datasetIdKey={props.symbol}
+        data={{
+          labels: times,
+          datasets: [
+            {
+              label: "$",
+              data: prices,
+              backgroundColor: "rgba(118,106,192,1)",
+              borderColor: "rgba(118,106,192,1)",
+              borderJoinStyle: "round",
+              borderCapStyle: "round",
+              borderWidth: 3,
+              pointRadius: 0,
+              pointHitRadius: 10,
+              lineTension: 0.2,
+            },
+          ],
+        }}
+        option={{
+          responsive: true,
+        }}
+      />
+    )
+  }
+}
+//* Post component chart code end
+
 //* Create new Post component code start
 // const post = (value, index) => {
 function Post({value, index}) {
@@ -218,7 +279,7 @@ function Post({value, index}) {
           <i className="fas fa-chart-line"></i>
         </button>
       </div>
-      {chart ? <p>Show</p> : <Info value={value} />}
+      {chart ? <PostChart symbol={value.symbol} /> : <Info value={value} />}
     </div>
   )
 }
