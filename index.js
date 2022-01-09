@@ -31,7 +31,7 @@ function Header(props) {
 
   return (
     <header className="flex md:flex-row flex-nowrap items-center md:justify-between justify-around flex-col bg-blue shadow-lg shadow-dark-blue md:h-20 h-48 px-8">
-      <Logo href="/index.htm" src="./images/logo.png" />
+      <Logo href="/index.htm" src="./images/logo-darktheme.webp" />
 
       <div className="search-bar w-96 h-9 relative">
         <span className="absolute top-[7.5px] left-[7px] z-50">
