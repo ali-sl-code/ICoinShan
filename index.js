@@ -96,6 +96,7 @@ function Header(props) {
 }
 //* Header JSX code end
 
+//! Post content code start
 //* Post component info JSX code start
 function PostInfo({value}) {
   let isGrowing = true
@@ -244,6 +245,7 @@ function PostChart(props) {
   }
 }
 //* Post component chart code end
+//! Post content code end
 
 //* Create new Post component code start
 // const post = (value, index) => {
