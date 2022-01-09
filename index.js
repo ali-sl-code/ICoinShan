@@ -324,9 +324,11 @@ function PostRow({value, index}) {
       key={value.id}
       onClick={() => setChart(!chart)}
     >
-      <div className={
-        `flex flex-row items-center justify-between self-start ${chart ? 'mb-5' : ''}`
-      }>
+      <div
+        className={`flex flex-row items-center justify-between self-start ${
+          chart ? "mb-5" : ""
+        }`}
+      >
         <div className="flex flex-row items-center justify-start">
           <h1 className="coin-name text-[22px] text-white mr-[25px] font-semibold">
             {value.name}
