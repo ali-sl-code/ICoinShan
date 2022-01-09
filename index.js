@@ -290,39 +290,78 @@ function Post({value, index}) {
   )
 }
 
-const postRow = (value, index) => {
+// const postRow = (value, index) => {
+function PostRow({value, index}) {
+  const [chart, setChart] = React.useState(false)
+
+  let isGrowing = true
+  let changePercent24HrClassList = [
+    // "absolute",
+    "items-center",
+    "justify-center",
+    "px-2",
+    "py-1",
+    // "top-[5px]",
+    // "right-[10px]",
+    "font-semibold",
+    // "border-[1px]",
+    // "border-solid",
+    // "rounded-full",
+  ]
+
+  if (value.changePercent24Hr.charAt(0) == "-") {
+    changePercent24HrClassList.push("text-damage")
+    isGrowing = false
+    // changePercent24HrClassList.push("text-damage border-damage")
+  } else {
+    changePercent24HrClassList.push("text-profit")
+    // changePercent24HrClassList.push("text-profit border-profit")
+  }
+
   return (
-    <div className="post-row w-full" key={value.id}>
-      <a
-        href={value.explorer}
-        target="_blank"
-        className="w-full flex flex-row items-center justify-start border-[1px] border-dark-blue rounded-md bg-light-primary/70 my-[10px] px-[25px] py-[20px] relative shadow-lg shadow-dark-blue wow animate__animated animate__fadeIn"
-      >
-        <h1 className="coin-name text-[22px] text-white mr-[25px] font-semibold">
-          {value.name}
-        </h1>
-        <div className="coin-symbol text-light text-[16px] mr-[12px]">
-          Symbol:{" "}
-          <span className="text-light-gray text-[14px]">{value.symbol}</span>
+    <div
+      className="w-full flex flex-col items-center justify-between border-[1px] border-dark-blue rounded-md bg-light-primary/70 my-[10px] px-[25px] py-[20px] relative shadow-lg shadow-dark-blue cursor-pointer wow animate__animated animate__fadeIn"
+      key={value.id}
+      onClick={() => setChart(!chart)}
+    >
+      <div className={
+        `flex flex-row items-center justify-between self-start ${chart ? 'mb-5' : ''}`
+      }>
+        <div className="flex flex-row items-center justify-start">
+          <h1 className="coin-name text-[22px] text-white mr-[25px] font-semibold">
+            {value.name}
+          </h1>
+          <div className="coin-symbol text-light text-[16px] mr-[12px]">
+            Symbol:{" "}
+            <span className="text-light-gray text-[14px]">{value.symbol}</span>
+          </div>
+          <div className="coin-price text-light text-[16px] mr-[12px]">
+            Price:{" "}
+            <span className="text-light-gray text-[14px]">
+              ${Number.parseFloat(value.priceUsd).toFixed(3)}
+            </span>
+          </div>
+          <div className="coin-supply text-light text-[16px]">
+            Supply:{" "}
+            <span className="text-light-gray text-[14px]">
+              {Number.parseFloat(value.supply).toFixed(2)}{" "}
+              {value.maxSupply != null &&
+                `max: ${Number.parseFloat(value.maxSupply).toFixed(2)}`}
+            </span>
+          </div>
         </div>
-        <div className="coin-price text-light text-[16px] mr-[12px]">
-          Price:{" "}
-          <span className="text-light-gray text-[14px]">
-            ${Number.parseFloat(value.priceUsd).toFixed(3)}
+        <div>
+          <span className={changePercent24HrClassList.join(" ")}>
+            {isGrowing ? (
+              <i className="fas fa-caret-up mx-1"></i>
+            ) : (
+              <i className="fas fa-caret-down mx-1"></i>
+            )}
+            {Number.parseFloat(value.changePercent24Hr).toFixed(2)}%
           </span>
         </div>
-        <div className="coin-supply text-light text-[16px]">
-          Supply:{" "}
-          <span className="text-light-gray text-[14px]">
-            {Number.parseFloat(value.supply).toFixed(2)}{" "}
-            {value.maxSupply != null &&
-              `max: ${Number.parseFloat(value.maxSupply).toFixed(2)}`}
-          </span>
-        </div>
-        <span className="coin-rank absolute flex items-center justify-center w-[30px] h-[30px] top-[22px] right-[15px] text-rank font-semibold border-[1px] border-solid border-rank rounded-full text-profit border-profit">
-          {value.rank}
-        </span>
-      </a>
+      </div>
+      {chart && <PostChart symbol={value.symbol} />}
     </div>
   )
 }
@@ -422,7 +461,9 @@ function Main(props) {
           {props.order == "row" &&
             props
               .search(props.data["data"], props.searchParam, props.q)
-              .map((value, index) => props.postRow(value, index))}
+              .map((value, index) => (
+                <props.postRow value={value} index={index} key={value.id} />
+              ))}
         </main>
         <Footer owner="Ali Soleimani" />
       </>
@@ -437,7 +478,7 @@ function App(props) {
   const [data, setData] = React.useState({})
   const [q, setQ] = React.useState("")
   const [searchParam] = React.useState(["name", "symbol"])
-  const [order, setOrder] = React.useState("post")
+  const [order, setOrder] = React.useState("row")
 
   return (
     <>
@@ -446,7 +487,7 @@ function App(props) {
         data={data}
         setData={setData}
         post={Post}
-        postRow={postRow}
+        postRow={PostRow}
         q={q}
         search={search}
         searchParam={searchParam}
