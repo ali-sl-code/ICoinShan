@@ -285,7 +285,11 @@ function Post({value, index}) {
           <i className="fas fa-chart-line"></i>
         </button>
       </div>
-      {chart ? <PostChart symbol={value.symbol} limit="19" /> : <PostInfo value={value} />}
+      {chart ? (
+        <PostChart symbol={value.symbol} limit="19" />
+      ) : (
+        <PostInfo value={value} />
+      )}
     </div>
   )
 }
