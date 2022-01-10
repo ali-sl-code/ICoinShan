@@ -259,9 +259,12 @@ function PostChart(props) {
 function Post({value, index}) {
   const [chart, setChart] = React.useState(false)
 
-  let coinLogoSrc = `https://cryptologos.cc/logos/${
-    value.id
-  }-${value.symbol.toLowerCase()}-logo.svg`
+  const coinLogoSrc = (id, symbol) => {
+    return `https://cryptologos.cc/logos/${id}-${symbol.toLowerCase()}-logo.svg`
+  }
+  // let coinLogoSrc = `https://cryptologos.cc/logos/${
+  //   value.id
+  // }-${value.symbol.toLowerCase()}-logo.svg`
 
   return (
     <div
@@ -270,9 +273,9 @@ function Post({value, index}) {
     >
       <div className="flex flex-row items-center justify-between mb-[15px]">
         <div className="flex flex-row items-center justify-start">
-          <a href={coinLogoSrc} target="_blank">
+          <a href={coinLogoSrc(value.id, value.symbol)} target="_blank">
             <img
-              src={coinLogoSrc}
+              src={coinLogoSrc(value.id, value.symbol)}
               className="w-[40px] h-[40px] mr-2"
               onError={({currentTarget}) => {
                 currentTarget.onerror = null
