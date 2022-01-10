@@ -33,28 +33,27 @@ function Header(props) {
     <header className="flex md:flex-row flex-nowrap items-center md:justify-between justify-around flex-col bg-blue shadow-lg shadow-dark-blue md:h-20 h-48 px-8">
       <Logo href="/index.htm" src="./images/logo-darktheme.webp" />
 
-      <div className="search-bar w-96 h-9 relative">
-        <span className="absolute top-[7.5px] left-[7px] z-50">
-          <i className="fas fa-search text-gray"></i>
-        </span>
-        <input
-          type="search"
-          name="search-form"
-          id="search-form"
-          className="search-input absolute top-0 bottom-0 w-full pl-7 outline-none text-[18px] border-solid border-[1px] border-gray rounded-md"
-          placeholder="Search..."
-          value={props.q}
-          // onChange={ (e) => setQ(e.target.value) }
-          onChange={(e) => props.setQ(e.target.value)}
-        />
-      </div>
-
-      <div className="order relative">
+      <div className="order relative flex flex-row items-center justify-center">
+        <div className="search-bar w-[40px] h-10 relative mr-2 hover:w-96 transition-all duration-[1.5s]">
+          <span className="absolute top-[8px] cursor-pointer left-[11px] z-50">
+            <i className="fas fa-search text-gray"></i>
+          </span>
+          <input
+            type="search"
+            name="search-form"
+            id="search-form"
+            className="search-input absolute top-0 bottom-0 w-full pl-[35px] outline-none text-[18px] border-solid border-[1px] border-gray rounded-md"
+            placeholder="Search..."
+            value={props.q}
+            // onChange={ (e) => setQ(e.target.value) }
+            onChange={(e) => props.setQ(e.target.value)}
+          />
+        </div>
         {/* <button type="button">{ props.order == "row" ? <i className="fas fa-grip-horizontal"></i> : <i className="fas fa-th-list"></i> }</button> */}
         <button
           type="button"
           id="orderBtn"
-          className="md:w-[40px] md:block hidden h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
+          className="md:w-10 md:block hidden h-10 border-[1px] border-dark-blue rounded-md bg-light-primary/70"
           onClick={() => setIsHidden(isHidden ? false : true)}
         >
           <i
