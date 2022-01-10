@@ -57,11 +57,18 @@ function Header(props) {
           className="md:w-[40px] md:block hidden h-[40px] border-[1px] border-dark-blue rounded-md bg-light-primary/70"
           onClick={() => setIsHidden(isHidden ? false : true)}
         >
-          {props.order == "post" ? (
+          <i
+            className={`${
+              props.order == "post"
+                ? "fas fa-grip-horizontal"
+                : "fas fa-th-list"
+            } text-white text-[22px]`}
+          ></i>
+          {/* {props.order == "post" ? (
             <i className="fas fa-grip-horizontal text-white text-[22px]"></i>
           ) : (
             <i className="fas fa-th-list text-white text-[22px]"></i>
-          )}
+          )} */}
         </button>
         <div
           id="order"
