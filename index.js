@@ -34,7 +34,7 @@ function Header(props) {
       <Logo href="/index.htm" src="./images/logo-darktheme.webp" />
 
       <div className="order relative flex flex-row items-center justify-center">
-        <div className="search-bar w-[40px] h-10 relative mr-2 hover:w-96 transition-all duration-[1.5s]">
+        <div className="search-bar w-96 md:w-[40px] h-10 relative mr-2 hover:w-96 transition-all duration-[1.5s]">
           <span className="absolute top-[8px] cursor-pointer left-[11px] z-50">
             <i className="fas fa-search text-gray"></i>
           </span>
